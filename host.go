@@ -45,6 +45,7 @@ func main() {
     for{
         submission := httpGet()
         if submission.Sid == ""{
+            time.Sleep(time.Second)
             continue
         }
         fmt.Println(submission)
