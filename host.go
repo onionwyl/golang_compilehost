@@ -41,9 +41,9 @@ func httpGet() submission_s {
     return content
 }
 
-func main() {
-    for i := 0;i < 5;i ++{
-        go func() {submission := httpGet()
+func run{
+    for{
+        submission := httpGet()
         if submission.Sid == ""{
             time.Sleep(time.Second)
             continue
@@ -60,7 +60,7 @@ func main() {
         cmd.Stdout = &out
         err := cmd.Run()
         if err != nil {
-           // log.Fatal(err)
+        // log.Fatal(err)
         }
         cmd = exec.Command("/bin/sh", "-c", "./tmp.out")
         cmd.Stdin = strings.NewReader(submission.Input)
@@ -81,10 +81,15 @@ func main() {
             log.Fatal(err)
             return
         }
-       // result, _ := ioutil.ReadAll(resp.Body)
+    // result, _ := ioutil.ReadAll(resp.Body)
         defer resp.Body.Close()
-        }()
-       // fmt.Printf("%s", result)
-       for{}
+        // fmt.Printf("%s", result)
     }
+}
+
+func main() {
+    for i := 0;i < 5;i ++{
+        go run()
+   }
+   for{}
 }
