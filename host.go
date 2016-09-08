@@ -42,8 +42,8 @@ func httpGet() submission_s {
 }
 
 func main() {
-    for{
-        submission := httpGet()
+    for i := 0;i < 5;i ++{
+        go func() {submission := httpGet()
         if submission.Sid == ""{
             time.Sleep(time.Second)
             continue
@@ -83,6 +83,8 @@ func main() {
         }
        // result, _ := ioutil.ReadAll(resp.Body)
         defer resp.Body.Close()
+        }()
        // fmt.Printf("%s", result)
+       for{}
     }
 }
